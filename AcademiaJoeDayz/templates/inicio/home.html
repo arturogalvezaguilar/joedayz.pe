@@ -1,0 +1,161 @@
+    {% extends "masterpage.html" %}
+
+    {% block css %}
+        <link href="{{ STATIC_URL }}css/styleHome.css" rel="stylesheet">
+    {% endblock css %}
+
+    {% block title %}
+        Bienvenido al home de JoeDayz
+    {% endblock title %}
+
+    {% block cuerpo %}
+        <div class="cuerpo">
+        <div class="corpus">
+            <div class="carrusel hidden-xs">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for c in contador %}
+                            {% if c == 0 %}
+                                <li data-target="#carousel-example-generic" data-slide-to="{{ c }}" class="active"></li>
+                            {% else %}
+                                <li data-target="#carousel-example-generic" data-slide-to="{{ c }}"></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for f in fotos_disponibles %}
+                            {% if f.id == 1 %}
+                                <div class="item active">
+    								<img class="imagenes-Home" src="{{ MEDIA_URL }}{{ f.url_foto }}" alt="foto{{ f.id }}"/>
+    								<div class="carousel-caption">
+    									<span class="portada-titulo">{{ f.titulo_foto }}</span>
+    									<h4 class="portada-descripcion portada-subtitulo">{{ f.descripcion_foto }}</h4>
+    								</div>
+    							</div>
+                            {% else %}
+                                <div class="item">
+    								<img class="imagenes-Home" src="{{ MEDIA_URL }}{{ f.url_foto }}" alt="foto{{ f.id }}"/>
+    								<div class="carousel-caption">
+    									<span>{{ f.titulo_foto }}</span>
+    									<h4 class="portada-subtitulo">{{ f.descripcion_foto }}</h4>
+    								</div>
+    							</div>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="contenedor">
+                    <div class="col-md-7">
+
+                        <!-- Cursos Presenciales -->
+                        <section>
+                            <span class="curso-title">no puedes perderte</span>
+                            <h2 class="title-list">Cursos presenciales</h2>
+
+
+
+                            {% for curso in presenciales_datos %}
+                                <div class="curso-articulo">
+                                    <img class="img-responsive imagenes-Home hidden-xs" src="{{ STATIC_URL }}img/linea%20punteada.gif"
+                                         alt="linea"/>
+
+                                    <div class="col-md-5">
+                                        
+                                        <div class="curso-fecha">
+                                            {{ curso.detallescurso.duracionCurso|safe }}
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-7">
+                                        <article>
+                                            <span class="curso-titulo">{{ curso.tituloCurso }}<br></span>
+
+                                            <div class="curso-descripcion">
+                                               {{ curso.datoscurso.descripcionCurso | safe | truncatewords:40 }}<br/>
+                                                <a href="{{ curso.datoscurso.urlCurso}}">Informate aquí</a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+ 
+                        </section>
+
+ 
+                        <section>
+                            <h2 class="title-list">Cursos en línea</h2>
+
+                            {% for curso in online_datos %}
+                                <div class="curso-articulo">
+                                    <img class="img-responsive imagenes-Home hidden-xs" src="{{ STATIC_URL }}img/linea%20punteada.gif"
+                                         alt="linea"/>
+
+                                    <div class="col-md-5">
+                                        
+                                        <div class="curso-fecha">
+                                            {{ curso.detallescurso.duracionCurso|safe }}
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-7">
+                                        <article>
+                                            <span class="curso-titulo">{{ curso.tituloCurso }}<br></span>
+
+                                            <div class="curso-descripcion">
+                                               {{ curso.datoscurso.descripcionCurso | safe | truncatewords:40 }}<br/>
+                                                <a href="{{ curso.datoscurso.urlCurso}}">Informate aquí</a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+ 
+                        </section>
+     
+                    </div>
+                    <div class="col-md-5">
+                        <section>
+                            <span class="multimedia-title">muy interesante</span>
+                            <img class="img-responsive imagenes-Home" src="{{ STATIC_URL }}img/t-multi.gif"
+                                 alt="multimedia"/>
+                            {% for videos in videos_disponibles %}
+                                <article class="video">
+
+                                    <span class="multimedia-video-titulo">{{ videos.titulo_video| upper }}</span>
+
+                                    <div class="col-md-12">
+                                        <iframe class="videos-joedayz" src="{{ videos.url_video }}"
+                                                frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </section>
+                        <section>
+                            <article class="blog">
+                                <img class="img-responsive imagenes-Home" src="{{ STATIC_URL }}img/t-blog.gif" alt="blog"/>
+
+                                <div class="col-md-12">
+                                    <span class="blog-fecha">13.10 2015<br/></span>
+                                    <span class="blog-titulo">Smart Card y Java Card <br/></span>
+                                    <span class="blog-autor">Con Carlos Ruiz de la Vega<br/></span>
+
+                                    <p>
+                                        Desarrollador Senior en Oficina Nacional de Procesos Electorales (ONPE)
+
+                                        Especialidades: Java Card, aplicaciones biometricas, JEE, VC++, VB, Spring, Android SDK, ADF, JMF, JAI, Pentaho, Base de datos Oracle, Cognos IBM, MS SQLServer, MySql.
+                                    </p>
+                                    <a href="https://youtu.be/1fz90eT14nU" class="blog-more" target="_blank">leer más</a>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock cuerpo %}
+
+

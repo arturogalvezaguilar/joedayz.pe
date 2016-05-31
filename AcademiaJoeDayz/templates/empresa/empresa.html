@@ -1,0 +1,47 @@
+{% extends 'masterpage.html' %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/styleHome.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/styleEmpresa.css" rel="stylesheet">
+{% endblock css %}
+
+{% block title %}
+    Empresa - JoeDayz Academy
+{% endblock title %}
+
+{% block cuerpo %}
+    <div class="cuerpo cursos">
+        <div class="corpus">
+            <div class="title cursos">
+                <h1>Empresa</h1>
+            </div>
+            <div class="contenedor">
+                <div class="col-md-5">
+                    {% if foto %}
+                        {% for f in foto %}
+                            <aside>
+                                <img class="img-responsive img-empresa" src="{{ MEDIA_URL }}{{f.foto_empresa}}" alt="{{f.titulo_foto}}" />    
+                            </aside>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-7">
+                    <article>
+                        {% if datos %}
+                            {% for d in datos %}
+                                <h1>Quienes Somos</h1>
+                                <section class='descEmpresa'>
+                                    {{ d.quienesSomos | safe }}
+                                </section>
+                                <h2>En joedayz</h2>
+                                <section class='descEmpresa'>
+                                    {{ d.caracteristicas | safe }}
+                                </section>
+                            {% endfor %}
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo %}

@@ -1,0 +1,35 @@
+{% extends "masterpage.html" %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/styleHome.css" rel="stylesheet">
+	<link href="{{ STATIC_URL }}css/stylePreguntas.css" rel="stylesheet">
+{% endblock css %}
+
+{% block title %}
+    Preguntas frecuentes en JoeDayz
+{% endblock title %}
+
+{% block cuerpo %}
+    <div class="cuerpo cursos">
+        <div class="corpus">
+			<div class="title cursos">
+                <h1>Preguntas Frecuentes</h1>
+            </div>
+			<div class="contenedor">
+                <div class="col-md-3">
+				</div>
+				<div class="col-md-9">
+					<article>
+						<br/>
+						{% for pregunta in preguntas %}
+							<h4 class="detalle">{{ pregunta.pregunta | safe }}</h4>
+							{{ pregunta.respuesta | safe }}
+						{% endfor %}
+					</article>
+				</div>
+			</div>
+        </div>
+    </div>
+{% endblock cuerpo %}
+
+

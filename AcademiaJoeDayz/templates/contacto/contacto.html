@@ -1,0 +1,53 @@
+{% extends 'masterpage.html' %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/styleHome.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/styleContacto.css" rel="stylesheet">
+{% endblock css %}
+
+{% block title %}
+    Contáctenos - JoeDayz Academy
+{% endblock title %}
+
+{% block cuerpo %}
+    <div class="cuerpo cursos">
+        <div class="corpus">
+            <div class="title">
+                <h1>Contáctenos</h1>
+            </div>
+            <div class="contenedor">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-7">
+                <article>
+                    <h1>Nuestras Oficinas</h1>
+
+					<section class='texto letraVerde borde_arriba negrita '>LIMA</section>
+                       {% if datos %}
+                           {% for d in datos %}
+                            <section class= 'texto letraVerde negrita'>
+                                {{ d.distrito }}
+                            </section>
+                            <section class='texto'>
+                                {{ d.direccion }}<br/>
+                            </section>
+                            <section class="borde_arriba texto negrita">
+                                Horario de atención:
+                            </section>
+                            <section class='texto'>
+                                {{ d.horario }}<br/>
+                            </section>
+                            <section class='texto'>
+                                {{ d.telefono }}<br/>
+                            </section>
+                            <section class='texto espacioAbajo'>
+                                {{ d.correo }}<br/>
+                            </section>
+                            {% endfor %}
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo %}

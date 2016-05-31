@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es-pe">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="h_98kWOVDkMLQoP-pDNXCEQBEAl5SrOJUrjvQ27Dtfs" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/yamm.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/styleMaster.css" rel="stylesheet">
+
+    {% block css %}
+
+    {% endblock css %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+
+	<script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '284745661693162',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+
+
+      };
+
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/es_LA/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+
+
+
+
+
+<div class="container">
+    <!-- inicio Cabecera-->
+    <header>
+        <form class="hidden-xs">
+            <input type="search" class="form-control buscador" Placeholder="Buscar" results=5 name="busqueda">
+        </form>
+        <a href="http://www.youtube.com/user/joedayzperu" target="_blank"><img class="img-responsive"
+                                                                               src="{{ STATIC_URL }}img/red3.gif"
+                                                                               alt="youtube"/></a>
+        <a href="https://www.facebook.com/JoeDayzAcademy" target="_blank"><img class="img-responsive"
+                                                                                  src="{{ STATIC_URL }}img/red2.gif"
+                                                                                  alt="facebook"/></a>
+        <a href="https://twitter.com/joedayz" target="_blank"><img class="img-responsive"
+                                                                   src="{{ STATIC_URL }}img/red1.gif"
+                                                                   alt="twitter"/></a>
+    </header>
+
+    <!--Logo y Menu de opciones-->
+    <nav>
+        <div class="navbar navbar-default yamm" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="http://www.joedayz.pe">
+                        <img class="img-responsive" src="{{ STATIC_URL }}img/logo.gif" alt="logo"/>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CURSOS PRESENCIALES<b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <ul class="col-sm-4 list-unstyled">
+
+                                            {% for cursos in presenciales %}
+                                                <li>
+                                                    <a href="/cursos/{{ cursos.id }}?{{ cursos.tituloCurso | slugify }}/">{{ cursos.tituloCurso }}</a>
+                                                </li>
+                                            {% empty %}
+                                                <li><a href="#">No hay cursos disponibles por ahora</a></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CURSOS ONLINE<b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <ul class="col-sm-4 list-unstyled">
+                                            <!--li><a href="#"><b>Diplomados</b></a></li-->
+                                            {% for cursos in diplomados %}
+                                                <li>
+                                                    <a href="/cursos/{{ cursos.id }}?{{ cursos.tituloCurso | slugify}}/">{{ cursos.tituloCurso }}</a>
+                                                </li>
+                                            {% empty %}
+                                                <li><a href="#">No hay cursos disponibles por ahora</a></li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">VIDEO CURSOS<b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <ul class="col-sm-4 list-unstyled">
+
+                                            {% for cursos in masivos %}
+                                                <li>
+                                                    <a href="/cursos/{{ cursos.id }}?{{ cursos.tituloCurso | slugify}}/">{{ cursos.tituloCurso }}</a>
+                                                </li>
+                                            {% empty %}
+                                                <li><a href="#">No hay cursos disponibles por ahora</a></li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                       
+                        </li>
+
+
+                        <li><a href="http://blog.joedayz.pe">BLOG</a>
+                        </li>
+
+                        <li><a href="/contacto/">CONTÁCTENOS</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Fin Cabecera-->
+
+    <!-- Inicio del Cuerpo-->
+    {% block cuerpo %}
+
+    {% endblock cuerpo %}
+    <!-- Fin del Cuerpo-->
+
+    <!--Footer (pie de pagina)-->
+    <div class='footer'>
+        <div class="footer-menu hidden-xs">
+            <div class="col-md-2">
+                <ul>
+                    <li><b>CURSOS PRESENCIALES</b></li>
+                    {% for cursos in presenciales_footer %}
+                        <li>
+                            <a href="/cursos/{{ cursos.id }}?{{ cursos.tituloCurso | slugify  }}/">{{ cursos.footerCurso }}</a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li><b>CURSOS ONLINE </b></li>
+                    {% for cursos in diplomados_footer %}
+                        <li>
+                            <a href="/cursos/{{ cursos.id }}?{{ cursos.tituloCurso | slugify}}/">{{ cursos.footerCurso }}</a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li><a href="/empresa/"><b>EMPRESA</b></a></li>
+                    <li><a href="http://www.joedayz.pe/empresa/">Quienes somos</a></li>
+                    <li><a href="#">Equipo</a></li>
+                    <li><a href="#">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li><b>RECURSOS EN LA WEB </b></li>
+                    <li><a href="http://blog.joedayz.pe/">Blog</a></li>
+                    <li><a href="http://github.com/joedayz/">GitHub</a></li>
+
+                </ul>
+            </div>
+            
+
+            <div class="col-md-2">
+                <ul>
+                    <li><a href="http://www.joedayz.pe/contacto/"><b>CONTÁCTENOS</b></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li>
+                        <a href="https://twitter.com/joedayz" target="_blank">
+                            <img class="img-responsive" src="{{ STATIC_URL }}img/red01.gif" alt="twitter"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/JoeDayzAcademy" target="_blank">
+                            <img class="img-responsive" src="{{ STATIC_URL }}img/red02.gif" alt="facebook"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/user/joedayzperu" target="_blank">
+                            <img class="img-responsive" src="{{ STATIC_URL }}img/red03.gif" alt="youtube"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-final col-md-12">
+            Copyright &copy; 2014 Team JoeDayz - Todos los derechos reservados
+            <br>Dirección: Mz. P Lt 29, Urb. Los Próceres
+            <br>Ventanilla, Callao - Perú
+        </div>
+    </div>
+</div>
+
+<script src="{{ STATIC_URL }}js/jquery-1.11.0.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+    window.$zopim || (function (d, s) {
+        var z = $zopim = function (c) {
+            z._.push(c)
+        }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0];
+        z.set = function (o) {
+            z.set.
+                    _.push(o)
+        };
+        z._ = [];
+        z.set._ = [];
+        $.async = !0;
+        $.setAttribute('charset', 'utf-8');
+        $.src = '//v2.zopim.com/?1p3vu88yJ4NSm0pb3JQ03xZr1jWjiFQi';
+        z.t = +new Date;
+        $.
+                type = 'text/javascript';
+        e.parentNode.insertBefore($, e)
+    })(document, 'script');
+</script>
+<!--End of Zopim Live Chat Script-->
+
+<!-- Start of Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68932709-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- End of Google Analytics -->
+
+{% block scripts %}
+
+{% endblock scripts %}
+</body>
+
+</html>

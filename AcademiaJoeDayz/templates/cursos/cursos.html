@@ -1,0 +1,144 @@
+{% extends 'masterpage.html' %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/styleHome.css" rel="stylesheet">
+{% endblock css %}
+
+{% block title %}
+    Cursos - JoeDayz Academy
+{% endblock title %}
+
+{% block cuerpo %}
+    <div class="cuerpo cursos">
+        <div class="corpus">
+            <div class="title cursos">
+                <h1>Cursos</h1>
+            </div>
+            <div class="contenedor">
+                <div class="col-md-5">
+                    <aside>
+                        <span>i</span>
+                        <blockquote>
+                            <h4 class="detalles">Duración del curso</h4>
+                            {{ detalles.duracionCurso | safe }}
+                        </blockquote>
+                        <blockquote>
+                            <h4 class="detalles">Horarios</h4>
+                            {{ detalles.horariosCurso | safe }}
+                        </blockquote>
+                        <blockquote>
+                            <h4 class="detalles">Fecha de inscripción</h4>
+                            {{ detalles.fecInscripcurso | safe }}
+                        </blockquote>
+                        <blockquote>
+                            <h4 class="detalles">Número de participantes</h4>
+
+                            <p>{{ detalles.numParticpantes | safe }}</p>
+                        </blockquote>
+                        <blockquote>
+                            <h4 class="detalles">Costo</h4>
+
+                            <p> {{ detalles.costo | safe }} soles</p>
+                        </blockquote>
+                        <blockquote>
+                            <h4 class="detalles">Formas de pago</h4>
+
+                            <p>
+                                Puedes depositar directamente a estas cuentas:<br>
+                                Banco de Credito 191-30759925-0-29<br>
+                                BBVA 0011-0339-0200168694<br>
+                                InterBank 089-304163926-0<br>
+                                Scotiabank 174-0055213<br>
+                                y enviarnos el voucher al e-mail:<br>
+                                jose.diaz@joedayz.pe<br><br>
+                                Pagar en nuestra oficina:<br>
+                                Jr. Huamachuco 1408 of. 401<br>
+                                Jesús María
+                            </p>
+
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <input type='hidden' name='cmd' value='_xclick'>
+                                <input type='hidden' name='business' value='jamdiazdiaz@gmail.com'>
+                                <input type='hidden' name='item_name' value='{{ cursos.tituloCurso }}'>
+                                <input type='hidden' name='item_number' value='{{ cursos.id }}'>
+                                <input type="hidden" name="quantity" id="CANTIDADPAYPAL" value="1">
+                                <input type="hidden" name="discount_amount" id="DESCUENTOPAYPAL" value="0">
+                                <input type='hidden' name='amount' id="MONTOPAYPAL"
+                                       value='{{ cambioDolar | safe }}'>
+                                <input type='hidden' name='page_style' value='primary'>
+                                <input type='hidden' name='no_shipping' value='1'>
+                                <input type='hidden' name='return' id="returnpaypal"
+                                       value='http://academia.joedayz.pe/paypal/gracias'>
+                                <input type='hidden' name='rm' value='2'>
+                                <input type='hidden' name='no_note' value='1'>
+                                <input type='hidden' name='currency_code' value='USD'>
+                                <input type='hidden' name='cn' value='PP-BuyNowBF'>
+                                <input type='hidden' name='custom' value=''>
+                                <input type='hidden' name='lc' value='es'>
+                                <button class="btn btn-default" id="btnPagar" type="submit"><b>Pagar con paypal</b>
+                                </button>
+                            </form>
+                        </blockquote>
+
+                        <blockquote class="resaltado">
+                            <h4 class="detalles">Ahora Regístrate</h4>
+
+                            <p>
+                                Al hacerte miembro de <strong>Joe Dayz Academy</strong><br>
+                                te beneficiarás de tarifas reducidas.
+                            </p>
+                        </blockquote>
+
+
+
+                    </aside>
+                </div>
+                <div class="col-md-7">
+                    <article>
+                        <header>
+                            <h1>{{ cursos.tituloCurso }}</h1>
+                        </header>
+                        <section>
+                            <h2>De qué se trata</h2>
+                            {{ datos.descripcionCurso | safe }}
+
+                            <h2>Temas</h2>
+                            {{ datos.temasCurso | safe }}
+
+                            <h2>Pre-requisitos</h2>
+
+                            {{ datos.preRequisitosCurso | safe }}
+
+                            <h2>Dirigido a</h2>
+
+                            {{ datos.participantesCurso | safe }}
+
+                            <h2>Metodología</h2>
+
+                            {{ datos.metodologiaCurso | safe }}
+
+                            <h2>Syllabus</h2>
+
+                            <p><a href="{{ datos.sylllabusCurso }}">Descarga</a> el Syllabus con información detalla del
+                                curso</p>
+
+                            <h2>Instructor</h2>
+
+                            {{ datos.instructorCurso | safe }}
+                        </section>
+                    </article>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+{% endblock cuerpo %}
+
+
+{% block scripts %}
+
+{% endblock %}
